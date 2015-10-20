@@ -12,40 +12,22 @@ Engine::Engine(void)
 //initialises values and starts the game
 void Engine::start(void)
 {
-	gameBoard->loadBoard(); // game board	
-	totalScore = 0;
-	gameStarted = true;
-	
+	gameBoard->initBoard(); // game board	
 }
 
-//moves the shape then checks for collisions. if collided it locks it in place and sends a new shape
-//bool Engine::moveShape(char x, char y){
 
-//	activeShape->move(x, y);
-//	if(!isValidMove())
-//	{
-//		activeShape->move(-1 * x, -1 * y);
-//		
-//		if(x == 0)
-//		{
-//			gamePanel->lockShape(*activeShape); //locks shape 
-//			totalScore += 5 * gamePanel->clearLines(activeShape->getY()); //clears line and updates score
-//			delete activeShape;
-//			nextShape();
-//		}
-//
-//		return false;
-//	}
-//
-//	return true;
-//}
-
-
-
-
-//tells the game board to draw itself and then the current shape to draw itself on top
+//tells the game board to draw itself 
 void Engine::draw()
 {
 	gameBoard->draw();	
 	
 }
+
+void Engine::changeCell(int x, int y, int colour)
+{
+	gameBoard->changeCell(x, y, colour);	
+	
+}
+
+
+

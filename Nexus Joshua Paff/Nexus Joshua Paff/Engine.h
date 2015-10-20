@@ -15,10 +15,9 @@ public:
 	
 	Engine(void);
 	void start(void);	
-	inline bool isGameStarted(){ return gameStarted; };	
-	void draw();	
-	inline int getScore(){ return totalScore; };
+	void draw();
+	void changeCell(int, int, int);
 	
 };
 
-#endif // end GAME def
+#endif 

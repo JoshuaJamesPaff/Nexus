@@ -2,6 +2,10 @@
 #include "Drawer.h"
 #include "Engine.h"
 
+
+
+Engine newGame;
+
 using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Collections;
@@ -9,7 +13,6 @@ using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
 
-Engine newGame;
 
 namespace NexusJoshuaPaff {
 
@@ -68,10 +71,12 @@ namespace NexusJoshuaPaff {
 			// 
 			this->pictureBoxBoard->Location = System::Drawing::Point(14, 43);
 			this->pictureBoxBoard->Name = L"pictureBoxBoard";
-			this->pictureBoxBoard->Size = System::Drawing::Size(599, 531);
+			this->pictureBoxBoard->Size = System::Drawing::Size(400, 400);
 			this->pictureBoxBoard->TabIndex = 0;
 			this->pictureBoxBoard->TabStop = false;
+			//paint and click handler for board
 			this->pictureBoxBoard->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &form1::pictureBoxBoard_Paint);
+			this->pictureBoxBoard->Click += gcnew System::EventHandler(this, &form1::pictureBoxBoard_Click);
 			// 
 			// buttonStart
 			// 
@@ -119,53 +124,32 @@ namespace NexusJoshuaPaff {
 		}
 #pragma endregion
 
-		// starts game when button is pressed
-	private: System::Void buttonStart_Click(System::Object^  sender, System::EventArgs^  e) {
+		private: System::Void pictureBoxBoard_Click(System::Object^  sender, System::EventArgs^  e) {
+				
+				Drawer::init(pictureBoxBoard->CreateGraphics());
 
-				if( !newGame.isGameStarted() )
-				{
-					Drawer::init(pictureBoxBoard->CreateGraphics());
-					newGame.start();										
-					pictureBoxBoard->Invalidate();
-					
-				}			
+				//parse click coordinates to game engine
+				int y = ((MouseEventArgs^)e)->X / BLOCK_SIZE;
+				int x = ((MouseEventArgs^)e)->Y / BLOCK_SIZE;
+				newGame.changeCell(x, y, 4);
+				newGame.draw();
+				pictureBoxBoard->Invalidate();
+				labelText->Text = L"Scor7777";
 			 }
 
-			 // sets key strokes for controls and what they do
-	protected: virtual bool ProcessCmdKey(Message% msg, Keys keyData ) override
-			{
-				switch(keyData)
-				{
-				case Keys::Right:
-					
-					break;
-				case Keys::Left:
-					
-					break;
-				case Keys::Down:
-					
-					break;
-				case Keys::Space:
-					
-					break;
+	private: System::Void pictureBoxBoard_Paint(Object^ sender, PaintEventArgs^ e) {
+
+				Drawer::init(e->Graphics);
+				newGame.draw();
 				}
-				pictureBoxBoard->Invalidate();
-				return true;
-			}
+				
 
-			    //paint handler for the game panel
-private: System::Void pictureBoxBoard_Paint(Object^ sender, PaintEventArgs^ e) {
-			 Drawer::init(e->Graphics);
-			newGame.draw();
-			 
-		 }
+		private: System::Void buttonStart_Click(System::Object^  sender, System::EventArgs^  e) {
 
-
-
-
-
-
-
+					 Drawer::init(pictureBoxBoard->CreateGraphics());
+					 newGame.draw();
+					 
+				 }
 	};
 }
 
