@@ -5,14 +5,14 @@
 
 
 #define BLOCK_SIZE 40
-#define BOARD_WIDTH 10
-#define BOARD_HEIGHT 10
+#define BOARD_WIDTH 9
+#define BOARD_HEIGHT 9
 
 
 
 class Board
 {
-	int boardArray[BOARD_HEIGHT][BOARD_WIDTH];
+	int boardArray[BOARD_WIDTH][BOARD_HEIGHT];
 
 public:
 	Board(void);
@@ -21,7 +21,7 @@ public:
 	void draw();
 	void changeCell(int, int, int);
 	int deleteLines(int, int);
-	void checkLines(int, int);
+	void checkLines(int, int, int);
 };
 
 #endif 

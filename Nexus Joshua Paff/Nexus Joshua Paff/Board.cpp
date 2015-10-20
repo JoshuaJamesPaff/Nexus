@@ -31,7 +31,7 @@ void Board::draw()
 void Board::changeCell(int x, int y, int colour)
 {
 	boardArray[x][y] = colour;
-	checkLines(x,y);
+	checkLines(x, y, colour);
 }
 
 //checks and clears lines that have 5 in a row
@@ -40,7 +40,133 @@ int Board::deleteLines(int x, int y)
 	return x+y;
 }
 
-void Board::checkLines(int x, int y){
+void Board::checkLines(int x, int y, int colour){
+
+	int Rcounter = 0;
+	int Lcounter = 0;
+	int Ucounter = 0;
+	int Dcounter = 0;
+	int RUcounter = 0;
+	int LBcounter = 0;
+	int RBcounter = 0;
+	int LUcounter = 0;
+
+
+	//x axis
+	//left
+	for(int i = 1; i <5 ; i++){
+		if(boardArray[x][y+i] == colour){
+			Lcounter++;
+		}
+	}
+
+	//right
+	for(int i = 1; i <5 ; i++){
+		if(boardArray[x][y-i] == colour){
+			Rcounter++;
+		}
+	}	
+	
+	if ((Rcounter + Lcounter) >= 4){
+
+			for(int i = 0; i <= Lcounter; i++){
+				boardArray[x][y+i] = 0;
+			}
+
+			for(int i = 0; i <= Rcounter; i++){
+				boardArray[x][y-i] = 0;
+			}
+	
+	}
+
+	//y axis
+	//up
+	for(int i = 1; i <5 ; i++){
+		if(boardArray[x+i][y] == colour){
+			Ucounter++;
+		}
+	}
+
+	//down
+	for(int i = 1; i <5 ; i++){
+		if(boardArray[x-i][y] == colour){
+			Dcounter++;
+		}
+	}	
+	
+	if ((Dcounter + Ucounter) >= 4){
+
+			for(int i = 0; i <= Ucounter; i++){
+				boardArray[x+i][y] = 0;
+			}
+
+			for(int i = 0; i <= Dcounter; i++){
+				boardArray[x-i][y] = 0;
+			}
+	
+	}
+
+
+
+
+	//da axis
+
+
+	//left top
+	for(int i = 1; i <5 ; i++){
+		if(boardArray[x-i][y-i] == colour){
+			LUcounter++;
+		}
+	}
+
+	//right bottom
+	for(int i = 1; i <5 ; i++){
+		if(boardArray[x+i][y+i] == colour){
+			RBcounter++;
+		}
+	}	
+	
+	if ((RBcounter + LUcounter) >= 4){ //if 5 in a row (0,1,2,3,4)
+
+			for(int i = 0; i <= LUcounter; i++){
+				boardArray[x-i][y-i] = 0;
+			}
+
+			for(int i = 0; i <= RBcounter; i++){
+				boardArray[x+i][y+i] = 0;
+			}
+	
+	}
+
+	//db axis
+	//right top
+	for(int i = 1; i <5 ; i++){
+		if(boardArray[x-i][y+i] == colour){
+			RUcounter++;
+		}
+	}
+
+	//left bottom
+	for(int i = 1; i <5 ; i++){
+		if(boardArray[x+i][y-i] == colour){
+			LBcounter++;
+		}
+	}	
+	
+	if ((RUcounter + LBcounter) >= 4){
+
+			for(int i = 0; i <= RUcounter; i++){
+				boardArray[x-i][y+i] = 0;
+			}
+
+			for(int i = 0; i <= LBcounter; i++){
+				boardArray[x+i][y-i] = 0;
+			}
+	
+	}
+
+
+
 }
 
 
