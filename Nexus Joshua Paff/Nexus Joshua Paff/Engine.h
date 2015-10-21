@@ -11,7 +11,11 @@ class Engine
 	
 	Board *gameBoard;	
 	int score;
-	bool started;	
+	bool gameStarted;
+	bool cellSelected;
+	int selectedColor;
+	int selectedCell[2];
+
 public:
 	
 	Engine(void);
@@ -20,7 +24,12 @@ public:
 	void changeCell(int, int, int);
 	void randCell();
 	inline int getScore() { return score; }
-	inline bool gameStarted(){ return started; }
+	inline bool isCellSelected() { return cellSelected; }
+	inline bool gameStart(){ return gameStarted; }
+	bool cellFree(int, int);
+	void selectCell(int, int);
+	inline int getSelectedColor() { return selectedColor; }
+	
 	
 };
 

@@ -16,6 +16,8 @@ void Board::initBoard()
 		}
 }
 
+
+
 int Board::cellType(int x, int y)
 {
 	return boardArray[x][y];
@@ -28,10 +30,22 @@ void Board::draw()
 }
 
 //changes color of induvidual cell
+void Board::changeCell(int x, int y)
+{
+	if(boardArray[x][y] != 0){
+	boardArray[x][y] = 7;
+	
+	}
+
+}
+//changes color of induvidual cell
 void Board::changeCell(int x, int y, int colour)
 {
+	if(boardArray[x][y] == 0 || boardArray[x][y] == 7){
 	boardArray[x][y] = colour;
 	checkLines(x, y, colour);
+	}
+
 }
 
 

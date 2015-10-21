@@ -27,6 +27,7 @@ namespace NexusJoshuaPaff {
 		form1(void)
 		{
 			InitializeComponent();
+
 			
 		}
 
@@ -151,7 +152,13 @@ namespace NexusJoshuaPaff {
 		}
 #pragma endregion
 
+		//what happens when the player clicks the board
 		private: System::Void pictureBoxBoard_Click(System::Object^  sender, System::EventArgs^  e) {
+			
+			if((newGame.gameStart() == true) ){
+				
+
+				
 				String^ scoreBoard;
 				int totalScore;
 
@@ -160,13 +167,30 @@ namespace NexusJoshuaPaff {
 				//parse click coordinates to game engine
 				int y = ((MouseEventArgs^)e)->X / BLOCK_SIZE;
 				int x = ((MouseEventArgs^)e)->Y / BLOCK_SIZE;
-				newGame.changeCell(x, y, 4);
 
-				//Scoring system with Live updating and High scores saving
+				//checks if cell is free
+				
+				
+				newGame.selectCell(x, y);
+				//newGame.changeCell(x, y, 4);
+
+				
+
+				
+					
+				
+				newGame.draw();
+				pictureBoxBoard->Invalidate();
+			
+			 
+				
+
+//Scoring system with Live updating and High scores saving
 				scoreBoard = labelScore->Text;
 				totalScore = int::Parse(scoreBoard);
 				
-				totalScore += newGame.getScore();
+				//scoring to encourage bigger plays
+				totalScore += (newGame.getScore() * (newGame.getScore()));
 				labelScore->Text = (totalScore +"");
 
 				String^ fileName = "highscore.txt";
@@ -175,7 +199,7 @@ namespace NexusJoshuaPaff {
 				String^ old = sr->ReadLine();
 				labelHighScore->Text = old;
 				
-				int oldHigh = int::Parse(old); // System::String^ to int 
+				int oldHigh = int::Parse(old); 
 
 				sr->Close();
 
@@ -187,19 +211,14 @@ namespace NexusJoshuaPaff {
 					labelHighScore->Text = str;
 					sw->Close();
 				}
-
+				//updates scoreboard
 				scoreBoard = totalScore.ToString();
 				labelScore->Text = scoreBoard;
-
-
-				// make random cells and redraw board
-				newGame.randCell();
-				newGame.draw();
-				pictureBoxBoard->Invalidate();
-				
+			}
+				 }
 		
-				
-			 }
+		
+
 
 	private: System::Void pictureBoxBoard_Paint(Object^ sender, PaintEventArgs^ e) {
 
@@ -207,9 +226,14 @@ namespace NexusJoshuaPaff {
 				newGame.draw();
 				}	
 
+
+			 //starts game and resets counters
 		private: System::Void buttonStart_Click(System::Object^  sender, System::EventArgs^  e) {
 					 Drawer::init(pictureBoxBoard->CreateGraphics());
+					 newGame.start();
+					 newGame.randCell();
 					 newGame.draw();
+					 labelScore->Text = "0";
 					 }
 	};
 }

@@ -14,6 +14,8 @@ class Board
 {
 	int boardArray[BOARD_WIDTH][BOARD_HEIGHT];
 	int cellsCleared;
+	
+	
 
 public:
 	Board(void);
@@ -21,6 +23,7 @@ public:
 	int cellType(int, int);
 	void draw();
 	inline int getCellsCleared() { return cellsCleared; }
+	void changeCell(int, int);
 	void changeCell(int, int, int);
 	void checkLines(int, int, int);
 };
