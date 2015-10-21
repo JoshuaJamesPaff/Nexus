@@ -10,8 +10,8 @@ class Engine
 {
 	
 	Board *gameBoard;	
-	int totalScore;
-	bool gameStarted;	
+	int score;
+	bool started;	
 public:
 	
 	Engine(void);
@@ -19,6 +19,8 @@ public:
 	void draw();
 	void changeCell(int, int, int);
 	void randCell();
+	inline int getScore() { return score; }
+	inline bool gameStarted(){ return started; }
 	
 };
 

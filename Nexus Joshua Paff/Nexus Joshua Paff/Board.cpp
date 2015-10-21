@@ -36,7 +36,7 @@ void Board::changeCell(int x, int y, int colour)
 
 
 void Board::checkLines(int x, int y, int colour){
-
+	int totalCount =0;
 	int Rcounter = 0;
 	int Lcounter = 0;
 	int Ucounter = 0;
@@ -70,10 +70,12 @@ void Board::checkLines(int x, int y, int colour){
 
 			for(int i = 0; i <= Lcounter; i++){
 				boardArray[x][y+i] = 0;
+				totalCount ++;
 			}
 
 			for(int i = 0; i <= Rcounter; i++){
 				boardArray[x][y-i] = 0;
+				totalCount ++;
 			}
 	
 	}
@@ -101,10 +103,12 @@ void Board::checkLines(int x, int y, int colour){
 
 			for(int i = 0; i <= Ucounter; i++){
 				boardArray[x+i][y] = 0;
+				totalCount ++;
 			}
 
 			for(int i = 0; i <= Dcounter; i++){
 				boardArray[x-i][y] = 0;
+				totalCount ++;
 			}
 	
 	}
@@ -132,10 +136,12 @@ void Board::checkLines(int x, int y, int colour){
 
 			for(int i = 0; i <= LUcounter; i++){
 				boardArray[x-i][y-i] = 0;
+				totalCount ++;
 			}
 
 			for(int i = 0; i <= RBcounter; i++){
 				boardArray[x+i][y+i] = 0;
+				totalCount ++;
 			}
 	
 	}
@@ -163,15 +169,17 @@ void Board::checkLines(int x, int y, int colour){
 
 			for(int i = 0; i <= RUcounter; i++){
 				boardArray[x-i][y+i] = 0;
+				totalCount ++;
 			}
 
 			for(int i = 0; i <= LBcounter; i++){
 				boardArray[x+i][y-i] = 0;
+				totalCount ++;
 			}
 	
 	}
 
-
+	cellsCleared = totalCount;
 
 }
 

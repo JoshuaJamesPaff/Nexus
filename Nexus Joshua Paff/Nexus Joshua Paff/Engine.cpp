@@ -26,7 +26,7 @@ void Engine::draw()
 void Engine::changeCell(int x, int y, int colour)
 {
 	gameBoard->changeCell(x, y, colour);	
-	
+	score = gameBoard->getCellsCleared();
 
 }
 
