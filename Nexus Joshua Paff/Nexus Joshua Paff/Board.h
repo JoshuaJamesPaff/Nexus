@@ -20,7 +20,6 @@ public:
 	int cellType(int, int);
 	void draw();
 	void changeCell(int, int, int);
-	int deleteLines(int, int);
 	void checkLines(int, int, int);
 };
 

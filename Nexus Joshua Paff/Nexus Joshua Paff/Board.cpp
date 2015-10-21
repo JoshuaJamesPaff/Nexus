@@ -34,11 +34,6 @@ void Board::changeCell(int x, int y, int colour)
 	checkLines(x, y, colour);
 }
 
-//checks and clears lines that have 5 in a row
-int Board::deleteLines(int x, int y)
-{
-	return x+y;
-}
 
 void Board::checkLines(int x, int y, int colour){
 
@@ -57,6 +52,8 @@ void Board::checkLines(int x, int y, int colour){
 	for(int i = 1; i <5 ; i++){
 		if(boardArray[x][y+i] == colour){
 			Lcounter++;
+		}else{
+			i=5;
 		}
 	}
 
@@ -64,6 +61,8 @@ void Board::checkLines(int x, int y, int colour){
 	for(int i = 1; i <5 ; i++){
 		if(boardArray[x][y-i] == colour){
 			Rcounter++;
+		}else{
+			i=5;
 		}
 	}	
 	
@@ -84,6 +83,8 @@ void Board::checkLines(int x, int y, int colour){
 	for(int i = 1; i <5 ; i++){
 		if(boardArray[x+i][y] == colour){
 			Ucounter++;
+		}else{
+			i=5;
 		}
 	}
 
@@ -91,9 +92,11 @@ void Board::checkLines(int x, int y, int colour){
 	for(int i = 1; i <5 ; i++){
 		if(boardArray[x-i][y] == colour){
 			Dcounter++;
+		}else{
+			i=5;
 		}
 	}	
-	
+
 	if ((Dcounter + Ucounter) >= 4){
 
 			for(int i = 0; i <= Ucounter; i++){
@@ -106,16 +109,13 @@ void Board::checkLines(int x, int y, int colour){
 	
 	}
 
-
-
-
 	//da axis
-
-
 	//left top
 	for(int i = 1; i <5 ; i++){
 		if(boardArray[x-i][y-i] == colour){
 			LUcounter++;
+		}else{
+			i=5;
 		}
 	}
 
@@ -123,6 +123,8 @@ void Board::checkLines(int x, int y, int colour){
 	for(int i = 1; i <5 ; i++){
 		if(boardArray[x+i][y+i] == colour){
 			RBcounter++;
+		}else{
+			i=5;
 		}
 	}	
 	
@@ -143,6 +145,8 @@ void Board::checkLines(int x, int y, int colour){
 	for(int i = 1; i <5 ; i++){
 		if(boardArray[x-i][y+i] == colour){
 			RUcounter++;
+		}else{
+			i=5;
 		}
 	}
 
@@ -150,6 +154,8 @@ void Board::checkLines(int x, int y, int colour){
 	for(int i = 1; i <5 ; i++){
 		if(boardArray[x+i][y-i] == colour){
 			LBcounter++;
+		}else{
+			i=5;
 		}
 	}	
 	

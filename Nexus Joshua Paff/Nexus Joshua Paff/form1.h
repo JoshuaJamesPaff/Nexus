@@ -132,6 +132,7 @@ namespace NexusJoshuaPaff {
 				int y = ((MouseEventArgs^)e)->X / BLOCK_SIZE;
 				int x = ((MouseEventArgs^)e)->Y / BLOCK_SIZE;
 				newGame.changeCell(x, y, 4);
+				newGame.randCell();
 				newGame.draw();
 				pictureBoxBoard->Invalidate();
 				labelText->Text = L"Scor7777";

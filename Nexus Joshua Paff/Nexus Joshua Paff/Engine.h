@@ -8,6 +8,7 @@
 
 class Engine
 {
+	
 	Board *gameBoard;	
 	int totalScore;
 	bool gameStarted;	
@@ -17,6 +18,7 @@ public:
 	void start(void);	
 	void draw();
 	void changeCell(int, int, int);
+	void randCell();
 	
 };
 
