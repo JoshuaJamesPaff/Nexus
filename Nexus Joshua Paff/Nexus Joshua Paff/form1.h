@@ -157,8 +157,6 @@ namespace NexusJoshuaPaff {
 			
 			if((newGame.gameStart() == true) ){
 				
-
-				
 				String^ scoreBoard;
 				int totalScore;
 
@@ -173,19 +171,11 @@ namespace NexusJoshuaPaff {
 				
 				newGame.selectCell(x, y);
 				//newGame.changeCell(x, y, 4);
-
-				
-
-				
-					
 				
 				newGame.draw();
-				pictureBoxBoard->Invalidate();
-			
-			 
-				
+				pictureBoxBoard->Invalidate();		
 
-//Scoring system with Live updating and High scores saving
+			//Scoring system with Live updating and High scores saving
 				scoreBoard = labelScore->Text;
 				totalScore = int::Parse(scoreBoard);
 				
@@ -216,9 +206,6 @@ namespace NexusJoshuaPaff {
 				labelScore->Text = scoreBoard;
 			}
 				 }
-		
-		
-
 
 	private: System::Void pictureBoxBoard_Paint(Object^ sender, PaintEventArgs^ e) {
 

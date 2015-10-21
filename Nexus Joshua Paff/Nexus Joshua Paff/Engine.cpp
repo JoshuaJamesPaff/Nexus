@@ -24,17 +24,18 @@ void Engine::draw()
 	gameBoard->draw();	
 	
 }
-
+//returns true if cell is empty
 bool Engine::cellFree(int x, int y){
 
 	return (gameBoard->cellType(x,y) == 0);
 	
 }
 
+//selects the cell to move and then moves it to a free space
 void Engine::selectCell(int x, int y)
 {
 
-	//if first click
+	//if first click then change it to a grey color
 	if( (gameBoard->cellType(x,y) > 0) && (cellSelected == false))
 	{
 		cellSelected = true;
@@ -44,7 +45,7 @@ void Engine::selectCell(int x, int y)
 		selectedCell[0] = x;
 		selectedCell[1] = y;
 
-		// second click to move
+		// if second click then move grey cell to the selected free cell and delete original
 	}else if ((gameBoard->cellType(x,y) == 0) && (cellSelected == true))
 	{
 

@@ -17,7 +17,7 @@ void Board::initBoard()
 }
 
 
-
+//gets the color of the cell with xy coordinates
 int Board::cellType(int x, int y)
 {
 	return boardArray[x][y];
@@ -48,6 +48,8 @@ void Board::changeCell(int x, int y, int colour)
 
 }
 
+
+//checks for 5 cells of the same color in a row, horizontally, vertically and diagon alley
 
 void Board::checkLines(int x, int y, int colour){
 	int totalCount =0;
@@ -192,7 +194,7 @@ void Board::checkLines(int x, int y, int colour){
 			}
 	
 	}
-
+	//counts for the total cells cleared after each click which gets addded to score
 	cellsCleared = totalCount;
 
 }
