@@ -5,8 +5,8 @@
 
 
 #define BLOCK_SIZE 40
-#define BOARD_WIDTH 7
-#define BOARD_HEIGHT 7
+#define BOARD_WIDTH 9
+#define BOARD_HEIGHT 9
 
 
 
